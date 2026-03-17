@@ -1,1 +1,15 @@
-tailwind.min.css
+# Tailwind Binary
+# The 110MB engine stays local to your Pi
+tailwind
+
+# Node.js
+node_modules/
+package-lock.json
+npm-debug.log*
+
+# OS / IDE
+.DS_Store
+.vscode/
+*.swp
+*.swo
+
