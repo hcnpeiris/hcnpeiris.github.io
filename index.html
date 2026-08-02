@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>HCN — Nipun Peiris</title>
-  <link href="./style.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <style>
     *,
@@ -107,11 +107,11 @@
 <body>
 
   <!-- ===================== DESKTOP (md+) ===================== -->
-  <section class="hidden md:grid md:grid-cols-9 min-h-screen">
+  <div class="hidden md:block">
 
-    <!-- ── Sidebar ── -->
-    <div class="col-span-3 bg-[#111111] relative sidebar-grain">
-      <div class="min-h-screen flex flex-col justify-between items-end px-12 py-14">
+    <!-- ── Sidebar (fixed — stays in view through the whole page) ── -->
+    <aside class="fixed top-0 left-0 h-screen w-1/3 bg-[#111111] sidebar-grain z-10">
+      <div class="h-full overflow-y-auto flex flex-col justify-between items-end px-12 py-14">
 
         <!-- Identity block -->
         <div class="w-full max-w-[17rem] text-right">
@@ -123,17 +123,25 @@
             Security Researcher &amp; Web Developer
           </p>
           <div class="w-8 h-px bg-orange-500 ml-auto mb-4 anim-item" id="d-rule"></div>
-          <p class="text-[0.78rem] font-light text-gray-400 leading-6 mb-8 anim-item" id="d-bio">
-            Building reliable, secure, and modern web experiences — from architecture to deployment.
-          </p>
-          <a href="https://medium.com/@hcnpeiris"
-            class="inline-flex items-center gap-2 bg-white rounded-full px-5 py-2 font-semibold text-[0.78rem] text-orange-500 tracking-wide hover:bg-orange-50 transition-colors duration-200 anim-item"
+          <a href="#d-articles"
+            class="inline-flex items-center gap-2 mr-2 bg-orange-500 rounded-full px-4 py-1.5 font-semibold text-[0.78rem] text-orange-50 tracking-wide hover:bg-orange-50 hover:text-orange-500 transition-colors duration-200 anim-item"
+            id="d-blog">
+            Resume
+            <!-- <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+            </svg> -->
+          </a>
+          <a href="#d-articles"
+            class="inline-flex items-center gap-2 bg-white rounded-full px-4 py-1.5 font-semibold text-[0.78rem] text-orange-500 tracking-wide hover:bg-orange-500 hover:text-orange-50 transition-colors duration-200 anim-item"
             id="d-blog">
             Read Blog
             <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
             </svg>
           </a>
+          <p class="text-[0.78rem] mt-8 font-light text-gray-400 leading-5 mb-8 anim-item" id="d-bio">
+            Building reliable, secure, and modern web experiences — from architecture to deployment.
+          </p>
         </div>
 
         <!-- Footer -->
@@ -152,21 +160,21 @@
                   clip-rule="evenodd" />
               </svg>
             </a>
-            <a href="mailto:hcn@example.com" class="social-icon text-gray-400 hover:text-orange-400">
+            <a href="mailto:hcnpeiris@gmail.com" class="social-icon text-gray-400 hover:text-orange-400">
               <svg class="w-[18px] h-[18px]" fill="currentColor" viewBox="0 0 24 24">
                 <path
                   d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 2v.01L12 11 4 6.01V6h16ZM4 18V8l8 5 8-5v10H4Z" />
               </svg>
             </a>
           </div>
-          <p class="text-[0.7rem] text-gray-400">© 2025 HCN Peiris</p>
+          <p class="text-[0.7rem] text-gray-400">© 2026 HCN Peiris</p>
         </footer>
 
       </div>
-    </div>
+    </aside>
 
-    <!-- ── Main content ── -->
-    <div class="col-span-6 bg-[#fafafa] flex flex-col">
+    <!-- ── Main content (offset to clear the fixed sidebar, scrolls independently) ── -->
+    <div class="ml-[33.3333%] bg-[#fafafa] flex flex-col min-h-screen">
 
       <!-- Contact form area -->
       <div class="flex-1 px-16 pt-16 pb-12">
@@ -247,13 +255,165 @@
             class="company-name text-2xl font-semibold text-gray-500 hover:text-gray-900">Immutable</a>
         </div>
         <p class="text-[0.7rem] text-gray-500 mt-4 font-light">
-          Hall of Fame listed under <span class="font-semibold text-gray-600">hcnpeiris</span> · Click a name to view
+          Hall of Fame listings with the name <span class="font-semibold text-gray-600">hcnpeiris</span> · Click a name
+          to view
           the Hall of Fame page.
         </p>
       </div>
 
+      <!-- Articles preview -->
+      <div class="border-t border-gray-100 bg-[#fafafa] px-16 py-16 anim-item" id="d-articles">
+        <p class="text-[0.7rem] font-semibold tracking-[0.15em] uppercase text-orange-500 mb-3">Writing</p>
+        <h2 class="name-display text-4xl text-[#111111] tracking-tight leading-tight mb-2">Latest articles</h2>
+        <p class="text-[0.85rem] font-light text-gray-500 mb-10 max-w-sm">Notes on security research, web
+          architecture, and things I learn while building.</p>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
+          <article data-article-id="angular-open-redirect"
+            class="article-card bg-white border border-gray-100 rounded-2xl overflow-hidden flex flex-col">
+            <div class="aspect-[16/10] bg-gray-200 overflow-hidden">
+              <img src="/img/angular-open-redirect.png" alt="Article preview"
+                class="w-full h-full object-cover block" />
+            </div>
+            <div class="p-5 pb-6 flex flex-col flex-1">
+              <div
+                class="flex items-center gap-2 text-[0.68rem] font-semibold tracking-wide uppercase text-gray-400 mb-3">
+                <span>May 28, 2026</span>
+                <span class="text-gray-300">&middot;</span>
+                <span>4 min read</span>
+              </div>
+              <h3 class="name-display font-bold text-[1.05rem] text-[#111111] mb-2 leading-snug">
+                Angular SSR Open Redirect (CVE-2026-27738 and CVE-2026-33397)
+              </h3>
+              <p class="text-[0.8rem] font-light text-gray-500 leading-relaxed mb-4 flex-1">
+                How X-Forwarded-Prefix and protocol-relative URLs enable CVE-2026-27738 and CVE-2026-33397 bugs.
+              </p>
+              <a href="/articles/angular-open-redirect.html"
+                class="text-[0.78rem] font-semibold text-orange-500 inline-flex items-center gap-1.5 hover:text-orange-600">
+                Read article
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+                </svg>
+              </a>
+            </div>
+          </article>
+          <article data-article-id="cache-busting"
+            class="article-card bg-white border border-gray-100 rounded-2xl overflow-hidden flex flex-col">
+            <div class="aspect-[16/10] bg-gray-200 overflow-hidden">
+              <img src="/img/cache-busting.png" alt="Article preview" class="w-full h-full object-cover block" />
+            </div>
+            <div class="p-5 pb-6 flex flex-col flex-1">
+              <div
+                class="flex items-center gap-2 text-[0.68rem] font-semibold tracking-wide uppercase text-gray-400 mb-3">
+                <span>July 23, 2026</span>
+                <span class="text-gray-300">&middot;</span>
+                <span>3 min read</span>
+              </div>
+              <h3 class="name-display font-bold text-[1.05rem] text-[#111111] mb-2 leading-snug">
+                Using Cache Deception Techniques to Discover Cache Poisoning Vectors
+              </h3>
+              <p class="text-[0.8rem] font-light text-gray-500 leading-relaxed mb-4 flex-1">
+                Using URL encoding variations and parser differentials as a cache-busting technique to hunt poisoning
+                bugs.
+              </p>
+              <a href="/articles/cache-busting.html"
+                class="text-[0.78rem] font-semibold text-orange-500 inline-flex items-center gap-1.5 hover:text-orange-600">
+                Read article
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+                </svg>
+              </a>
+            </div>
+          </article>
+
+          <article data-article-id="angular-ssrf"
+            class="article-card bg-white border border-gray-100 rounded-2xl overflow-hidden flex flex-col">
+            <div class="aspect-[16/10] bg-gray-200 overflow-hidden">
+              <img src="/img/angular-ssrf.png" alt="Article preview" class="w-full h-full object-cover block" />
+            </div>
+            <div class="p-5 pb-6 flex flex-col flex-1">
+              <div
+                class="flex items-center gap-2 text-[0.68rem] font-semibold tracking-wide uppercase text-gray-400 mb-3">
+                <span>July 23, 2026</span>
+                <span class="text-gray-300">&middot;</span>
+                <span>4 min read</span>
+              </div>
+              <h3 class="name-display font-bold text-[1.05rem] text-[#111111] mb-2 leading-snug">
+                Angular SSR SSRF Explained (CVE-2025-62427 and CVE-2026-27739)
+              </h3>
+              <p class="text-[0.8rem] font-light text-gray-500 leading-relaxed mb-4 flex-1">
+                Explains two Angular SSR SSRF CVEs (2025-62427, 2026-27739): how malformed Host/URL inputs let attackers
+                hijack the request origin.
+              </p>
+              <a href="/articles/angular-ssrf.html"
+                class="text-[0.78rem] font-semibold text-orange-500 inline-flex items-center gap-1.5 hover:text-orange-600">
+                Read article
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+                </svg>
+              </a>
+            </div>
+          </article>
+          <article data-article-id="home-lab"
+            class="article-card bg-white border border-gray-100 rounded-2xl overflow-hidden flex flex-col">
+            <div class="aspect-[16/10] bg-gray-200 overflow-hidden">
+              <img src="/img/home-lab.png" alt="Article preview" class="w-full h-full object-cover block" />
+            </div>
+            <div class="p-5 pb-6 flex flex-col flex-1">
+              <div
+                class="flex items-center gap-2 text-[0.68rem] font-semibold tracking-wide uppercase text-gray-400 mb-3">
+                <span>June 26, 2026</span>
+                <span class="text-gray-300">&middot;</span>
+                <span>4 min read</span>
+              </div>
+              <h3 class="name-display font-bold text-[1.05rem] text-[#111111] mb-2 leading-snug">
+                Practical Homelab for Web Security Research
+              </h3>
+              <p class="text-[0.8rem] font-light text-gray-500 leading-relaxed mb-4 flex-1">
+                Build a Raspberry Pi homelab to safely recreate web app stacks, test vulnerabilities, and hunt bugs.
+              </p>
+              <a href="/articles/home-lab.html"
+                class="text-[0.78rem] font-semibold text-orange-500 inline-flex items-center gap-1.5 hover:text-orange-600">
+                Read article
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+                </svg>
+              </a>
+            </div>
+          </article>
+          <article data-article-id="lovable-pentest"
+            class="article-card bg-white border border-gray-100 rounded-2xl overflow-hidden flex flex-col">
+            <div class="aspect-[16/10] bg-gray-200 overflow-hidden">
+              <img src="/img/lovable-pentest.png" alt="Article preview" class="w-full h-full object-cover block" />
+            </div>
+            <div class="p-5 pb-6 flex flex-col flex-1">
+              <div
+                class="flex items-center gap-2 text-[0.68rem] font-semibold tracking-wide uppercase text-gray-400 mb-3">
+                <span>April 13, 2026</span>
+                <span class="text-gray-300">&middot;</span>
+                <span>4 min read</span>
+              </div>
+              <h3 class="name-display font-bold text-[1.05rem] text-[#111111] mb-2 leading-snug">
+                From BOLA to Account Takeover via XSS Using the javascript: Pseudo-Protocol
+              </h3>
+              <p class="text-[0.8rem] font-light text-gray-500 leading-relaxed mb-4 flex-1">
+                BOLA plus javascript: URI injection let attackers steal JWTs and hijack any user or admin account.
+              </p>
+              <a href="/articles/lovable-pentest.html"
+                class="text-[0.78rem] font-semibold text-orange-500 inline-flex items-center gap-1.5 hover:text-orange-600">
+                Read article
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+                </svg>
+              </a>
+            </div>
+          </article>
+          <!-- DESKTOP_ARTICLES_PLACEHOLDER -->
+        </div>
+      </div>
+
     </div>
-  </section>
+  </div>
 
 
   <!-- ===================== MOBILE (< md) ===================== -->
@@ -272,8 +432,13 @@
       <p class="text-[0.78rem] font-light text-gray-400 leading-6 mb-7 max-w-xs mx-auto anim-item" id="m-bio">
         Building reliable, secure, and modern web experiences — from architecture to deployment.
       </p>
-      <a href="exampl.com"
-        class="inline-flex items-center gap-2 bg-white rounded-full px-5 py-2 font-semibold text-[0.78rem] text-orange-500 tracking-wide hover:bg-orange-50 transition-colors duration-200 anim-item"
+      <a href="#d-articles"
+        class="inline-flex items-center gap-2 bg-orange-500 rounded-full mr-2 px-4 py-1.5 font-semibold text-[0.78rem] text-orange-50 tracking-wide hover:bg-orange-50 hover:text-orange-500 transition-colors duration-200 anim-item"
+        id="m-blog">
+        Resume
+      </a>
+      <a href="#d-articles"
+        class="inline-flex items-center gap-2 bg-white rounded-full px-4 py-1.5 font-semibold text-[0.78rem] text-orange-500 tracking-wide hover:bg-orange-500 hover:text-orange-50 transition-colors duration-200 anim-item"
         id="m-blog">
         Read Blog
         <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
@@ -284,7 +449,8 @@
 
     <!-- 2. Security Contributions -->
     <section class="bg-white border-b border-gray-100 px-7 py-8 anim-item" id="m-contrib">
-      <p class="text-[0.65rem] font-semibold tracking-[0.18em] uppercase text-orange-500 mb-4">Security Contributions</p>
+      <p class="text-[0.65rem] font-semibold tracking-[0.18em] uppercase text-orange-500 mb-4">Security Contributions
+      </p>
       <div class="flex items-center gap-5 mb-3">
         <span class="company-name text-xl font-semibold text-gray-500">HSBC</span>
         <span class="text-gray-300">|</span>
@@ -293,7 +459,8 @@
         <span class="company-name text-xl font-semibold text-gray-500">Immutable</span>
       </div>
       <p class="text-[0.68rem] text-gray-500 font-light leading-5">
-        Listed in Halls of Fame under the handle: <span class="font-semibold text-gray-600">hcnpeiris</span> · Tap a name to view.
+        Hall of Fame listings with the name <span class="font-semibold text-gray-600">hcnpeiris</span> · Tap a
+        name to view.
       </p>
     </section>
 
@@ -303,7 +470,8 @@
         Get in touch</p>
       <h2 class="name-display text-[2rem] text-[#111111] tracking-tight leading-tight mb-1 anim-item" id="m-heading">
         Contact Now</h2>
-      <p class="text-[0.8rem] font-light text-gray-500 mb-7 anim-item" id="m-sub">Let’s build something secure together. Use the form below to reach out.</p>
+      <p class="text-[0.8rem] font-light text-gray-500 mb-7 anim-item" id="m-sub">Let’s build something secure together.
+        Use the form below to reach out.</p>
 
       <form action="https://formspree.io/f/xeerponl" method="POST">
         <div class="grid grid-cols-2 gap-x-4 gap-y-4">
@@ -356,6 +524,156 @@
         </div>
       </form>
     </main>
+
+    <!-- 3.5. Articles preview -->
+    <section class="bg-[#fafafa] border-t border-gray-100 px-7 py-9 anim-item" id="m-articles">
+      <p class="text-[0.65rem] font-semibold tracking-[0.15em] uppercase text-orange-500 mb-2">Writing</p>
+      <h2 class="name-display text-[2rem] text-[#111111] tracking-tight leading-tight mb-1">Latest articles</h2>
+      <p class="text-[0.8rem] font-light text-gray-500 mb-7">Notes on security research, web architecture, and things
+        I learn while building.</p>
+
+      <div class="grid grid-cols-1 gap-5">
+        <article data-article-id="angular-open-redirect"
+          class="article-card bg-white border border-gray-100 rounded-2xl overflow-hidden flex flex-col">
+          <div class="aspect-[16/10] bg-gray-200 overflow-hidden">
+            <img src="/img/angular-open-redirect.png" alt="Article preview" class="w-full h-full object-cover block" />
+          </div>
+          <div class="p-5 pb-6 flex flex-col flex-1">
+            <div
+              class="flex items-center gap-2 text-[0.68rem] font-semibold tracking-wide uppercase text-gray-400 mb-3">
+              <span>May 28, 2026</span>
+              <span class="text-gray-300">&middot;</span>
+              <span>4 min read</span>
+            </div>
+            <h3 class="name-display font-bold text-[1.05rem] text-[#111111] mb-2 leading-snug">
+              Angular SSR Open Redirect (CVE-2026-27738 and CVE-2026-33397)
+            </h3>
+            <p class="text-[0.8rem] font-light text-gray-500 leading-relaxed mb-4 flex-1">
+              How X-Forwarded-Prefix and protocol-relative URLs enable CVE-2026-27738 and CVE-2026-33397 bugs.
+            </p>
+            <a href="/articles/angular-open-redirect.html"
+              class="text-[0.78rem] font-semibold text-orange-500 inline-flex items-center gap-1.5 hover:text-orange-600">
+              Read article
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+              </svg>
+            </a>
+          </div>
+        </article>
+        <article data-article-id="cache-busting"
+          class="article-card bg-white border border-gray-100 rounded-2xl overflow-hidden flex flex-col">
+          <div class="aspect-[16/10] bg-gray-200 overflow-hidden">
+            <img src="/img/cache-busting.png" alt="Article preview" class="w-full h-full object-cover block" />
+          </div>
+          <div class="p-5 pb-6 flex flex-col flex-1">
+            <div
+              class="flex items-center gap-2 text-[0.68rem] font-semibold tracking-wide uppercase text-gray-400 mb-3">
+              <span>July 23, 2026</span>
+              <span class="text-gray-300">&middot;</span>
+              <span>3 min read</span>
+            </div>
+            <h3 class="name-display font-bold text-[1.05rem] text-[#111111] mb-2 leading-snug">
+              Using Cache Deception Techniques to Discover Cache Poisoning Vectors
+            </h3>
+            <p class="text-[0.8rem] font-light text-gray-500 leading-relaxed mb-4 flex-1">
+              Using URL encoding variations and parser differentials as a cache-busting technique to hunt poisoning
+              bugs.
+            </p>
+            <a href="/articles/cache-busting.html"
+              class="text-[0.78rem] font-semibold text-orange-500 inline-flex items-center gap-1.5 hover:text-orange-600">
+              Read article
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+              </svg>
+            </a>
+          </div>
+        </article>
+
+        <article data-article-id="angular-ssrf"
+          class="article-card bg-white border border-gray-100 rounded-2xl overflow-hidden flex flex-col">
+          <div class="aspect-[16/10] bg-gray-200 overflow-hidden">
+            <img src="/img/angular-ssrf.png" alt="Article preview" class="w-full h-full object-cover block" />
+          </div>
+          <div class="p-5 pb-6 flex flex-col flex-1">
+            <div
+              class="flex items-center gap-2 text-[0.68rem] font-semibold tracking-wide uppercase text-gray-400 mb-3">
+              <span>July 23, 2026</span>
+              <span class="text-gray-300">&middot;</span>
+              <span>4 min read</span>
+            </div>
+            <h3 class="name-display font-bold text-[1.05rem] text-[#111111] mb-2 leading-snug">
+              Angular SSR SSRF Explained (CVE-2025-62427 and CVE-2026-27739)
+            </h3>
+            <p class="text-[0.8rem] font-light text-gray-500 leading-relaxed mb-4 flex-1">
+              Explains two Angular SSR SSRF CVEs (2025-62427, 2026-27739): how malformed Host/URL inputs let attackers
+              hijack the request origin.
+            </p>
+            <a href="/articles/angular-ssrf.html"
+              class="text-[0.78rem] font-semibold text-orange-500 inline-flex items-center gap-1.5 hover:text-orange-600">
+              Read article
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+              </svg>
+            </a>
+          </div>
+        </article>
+        <article data-article-id="home-lab"
+          class="article-card bg-white border border-gray-100 rounded-2xl overflow-hidden flex flex-col">
+          <div class="aspect-[16/10] bg-gray-200 overflow-hidden">
+            <img src="/img/home-lab.png" alt="Article preview" class="w-full h-full object-cover block" />
+          </div>
+          <div class="p-5 pb-6 flex flex-col flex-1">
+            <div
+              class="flex items-center gap-2 text-[0.68rem] font-semibold tracking-wide uppercase text-gray-400 mb-3">
+              <span>June 26, 2026</span>
+              <span class="text-gray-300">&middot;</span>
+              <span>4 min read</span>
+            </div>
+            <h3 class="name-display font-bold text-[1.05rem] text-[#111111] mb-2 leading-snug">
+              Practical Homelab for Web Security Research
+            </h3>
+            <p class="text-[0.8rem] font-light text-gray-500 leading-relaxed mb-4 flex-1">
+              Build a Raspberry Pi homelab to safely recreate web app stacks, test vulnerabilities, and hunt bugs.
+            </p>
+            <a href="/articles/home-lab.html"
+              class="text-[0.78rem] font-semibold text-orange-500 inline-flex items-center gap-1.5 hover:text-orange-600">
+              Read article
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+              </svg>
+            </a>
+          </div>
+        </article>
+        <article data-article-id="lovable-pentest"
+          class="article-card bg-white border border-gray-100 rounded-2xl overflow-hidden flex flex-col">
+          <div class="aspect-[16/10] bg-gray-200 overflow-hidden">
+            <img src="/img/lovable-pentest.png" alt="Article preview" class="w-full h-full object-cover block" />
+          </div>
+          <div class="p-5 pb-6 flex flex-col flex-1">
+            <div
+              class="flex items-center gap-2 text-[0.68rem] font-semibold tracking-wide uppercase text-gray-400 mb-3">
+              <span>April 13, 2026</span>
+              <span class="text-gray-300">&middot;</span>
+              <span>4 min read</span>
+            </div>
+            <h3 class="name-display font-bold text-[1.05rem] text-[#111111] mb-2 leading-snug">
+              From BOLA to Account Takeover via XSS Using the javascript: Pseudo-Protocol
+            </h3>
+            <p class="text-[0.8rem] font-light text-gray-500 leading-relaxed mb-4 flex-1">
+              BOLA plus javascript: URI injection let attackers steal JWTs and hijack any user or admin account.
+            </p>
+            <a href="/articles/lovable-pentest.html"
+              class="text-[0.78rem] font-semibold text-orange-500 inline-flex items-center gap-1.5 hover:text-orange-600">
+              Read article
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+              </svg>
+            </a>
+          </div>
+        </article>
+        <!-- DESKTOP_ARTICLES_PLACEHOLDER -->
+      </div>
+    </section>
 
     <!-- 4. Footer -->
     <footer class="bg-[#111111] px-7 py-7 text-center anim-item" id="m-footer">
@@ -428,6 +746,13 @@
         '-=0.2'
       );
 
+      // Articles section slides up after contributions
+      tl.fromTo('#d-articles',
+        { opacity: 0, y: 20 },
+        { opacity: 1, y: 0, duration: 0.6 },
+        '-=0.2'
+      );
+
     } else {
       // ── MOBILE: everything fades up section by section ──
       const tl = gsap.timeline({ defaults: { ease, duration: 0.6 } });
@@ -459,11 +784,18 @@
         '-=0.1'
       );
 
+      // Articles section
+      tl.fromTo('#m-articles',
+        { opacity: 0, y: 16 },
+        { opacity: 1, y: 0 },
+        '-=0.1'
+      );
+
       // Footer
       tl.fromTo('#m-footer',
         { opacity: 0 },
         { opacity: 1, duration: 0.4 },
-        '-=50'
+        '-=0.2'
       );
     }
   </script>
